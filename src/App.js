@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from 'react';
+import { Provider } from 'react-redux';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Navbar from './Component/Navbar';
+import store from './redux/store'
+import NotFound from './Component/NotFound'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+const App = () => (
+  <Provider store={store}>
+    <BrowserRouter>
+      <Fragment>
+        <div className="App">
+          <Navbar />
+          <Switch>
+            {/* <Route exact path="/" component={Authenticate(Login)} /> */}
+            
+            {/* <Route
+              exact
+              path="/bulk/concepts/:type/:typeName/:collectionName/:dictionaryName/:language"
+              component={Authenticate(AddBulkConcepts)}
+            /> */}
+            
+            <Route component={NotFound} />
+          </Switch>
+        </div>
+      </Fragment>
+    </BrowserRouter>
+  </Provider>
+);
 
 export default App;
